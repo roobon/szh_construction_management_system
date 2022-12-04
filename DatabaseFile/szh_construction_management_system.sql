@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 10, 2021 at 10:36 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.10
+-- Host: localhost
+-- Generation Time: Dec 04, 2022 at 09:44 PM
+-- Server version: 8.0.29
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `monitoring`
+-- Database: `szh_construction_management_system`
 --
 
 -- --------------------------------------------------------
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `user_id` int(11) NOT NULL,
+  `user_id` int NOT NULL,
   `name` varchar(30) NOT NULL,
   `username` varchar(30) NOT NULL,
   `password` text NOT NULL,
@@ -49,12 +49,12 @@ INSERT INTO `admin` (`user_id`, `name`, `username`, `password`, `user_type`) VAL
 --
 
 CREATE TABLE `auto` (
-  `auto_id` int(11) NOT NULL,
-  `auto_start` int(11) NOT NULL,
-  `auto_end` int(11) NOT NULL,
-  `increment` int(11) NOT NULL,
+  `auto_id` int NOT NULL,
+  `auto_start` int NOT NULL,
+  `auto_end` int NOT NULL,
+  `increment` int NOT NULL,
   `description` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `auto`
@@ -71,16 +71,16 @@ INSERT INTO `auto` (`auto_id`, `auto_start`, `auto_end`, `increment`, `descripti
 --
 
 CREATE TABLE `borrowed_tools` (
-  `borrow_id` int(11) NOT NULL,
-  `tool_id` int(11) NOT NULL,
-  `qty` int(11) NOT NULL,
-  `emp_id` int(11) NOT NULL,
+  `borrow_id` int NOT NULL,
+  `tool_id` int NOT NULL,
+  `qty` int NOT NULL,
+  `emp_id` int NOT NULL,
   `borrowed_date` varchar(30) NOT NULL,
   `borrowed_time` varchar(30) NOT NULL,
   `due_date` varchar(30) NOT NULL,
   `date_returned` varchar(30) NOT NULL,
   `status` varchar(30) NOT NULL,
-  `location_id` int(11) NOT NULL
+  `location_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -97,9 +97,9 @@ INSERT INTO `borrowed_tools` (`borrow_id`, `tool_id`, `qty`, `emp_id`, `borrowed
 --
 
 CREATE TABLE `employees` (
-  `emp_id` int(11) NOT NULL,
+  `emp_id` int NOT NULL,
   `name` varchar(30) NOT NULL,
-  `age` int(3) NOT NULL,
+  `age` int NOT NULL,
   `address` text NOT NULL,
   `contact_number` varchar(30) NOT NULL,
   `position` varchar(30) NOT NULL
@@ -123,12 +123,12 @@ INSERT INTO `employees` (`emp_id`, `name`, `age`, `address`, `contact_number`, `
 --
 
 CREATE TABLE `equipments` (
-  `equip_id` int(11) NOT NULL,
+  `equip_id` int NOT NULL,
   `uniquec` varchar(30) NOT NULL,
   `name` varchar(30) NOT NULL,
   `category` varchar(30) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `available_quantity` int(11) NOT NULL,
+  `quantity` int NOT NULL,
+  `available_quantity` int NOT NULL,
   `status` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -147,17 +147,17 @@ INSERT INTO `equipments` (`equip_id`, `uniquec`, `name`, `category`, `quantity`,
 --
 
 CREATE TABLE `equip_mapping` (
-  `map_id` int(11) NOT NULL,
-  `equip_id` int(11) NOT NULL,
-  `qty` int(11) NOT NULL,
-  `remaining_qty` int(11) NOT NULL,
-  `location_id` int(11) NOT NULL,
+  `map_id` int NOT NULL,
+  `equip_id` int NOT NULL,
+  `qty` int NOT NULL,
+  `remaining_qty` int NOT NULL,
+  `location_id` int NOT NULL,
   `date_borrowed` varchar(30) NOT NULL,
   `time_borrowed` varchar(30) NOT NULL,
   `due_date` varchar(30) NOT NULL,
   `date_returned` varchar(30) NOT NULL,
   `status` varchar(30) NOT NULL,
-  `emp_id` int(11) NOT NULL
+  `emp_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -175,9 +175,9 @@ INSERT INTO `equip_mapping` (`map_id`, `equip_id`, `qty`, `remaining_qty`, `loca
 --
 
 CREATE TABLE `location` (
-  `location_id` int(11) NOT NULL,
+  `location_id` int NOT NULL,
   `location_address` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `location`
@@ -198,10 +198,10 @@ INSERT INTO `location` (`location_id`, `location_address`) VALUES
 --
 
 CREATE TABLE `logs` (
-  `log_id` int(11) NOT NULL,
+  `log_id` int NOT NULL,
   `action` text NOT NULL,
   `date_time` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `logs`
@@ -254,7 +254,8 @@ INSERT INTO `logs` (`log_id`, `action`, `date_time`) VALUES
 (44, 'location Bago City\r\n was updated', '2021-03-08 15:13:32'),
 (45, 'location Bago City\r\n was updated', '2021-03-08 15:13:32'),
 (46, 'location Bago City\r\n was updated', '2021-03-08 15:13:32'),
-(47, 'user Admin was login', '2021-03-11 04:40:32');
+(47, 'user Admin was login', '2021-03-11 04:40:32'),
+(48, 'user Admin was login', '2022-12-05 05:36:10');
 
 -- --------------------------------------------------------
 
@@ -263,13 +264,13 @@ INSERT INTO `logs` (`log_id`, `action`, `date_time`) VALUES
 --
 
 CREATE TABLE `outsourcing` (
-  `source_id` int(11) NOT NULL,
+  `source_id` int NOT NULL,
   `company_name` varchar(30) NOT NULL,
-  `equip_id` int(11) NOT NULL,
-  `qty` int(11) NOT NULL,
+  `equip_id` int NOT NULL,
+  `qty` int NOT NULL,
   `date_outsourced` varchar(30) NOT NULL,
   `source_code` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -278,13 +279,13 @@ CREATE TABLE `outsourcing` (
 --
 
 CREATE TABLE `outsourcing_tools` (
-  `source_id` int(11) NOT NULL,
+  `source_id` int NOT NULL,
   `company_name` varchar(30) NOT NULL,
-  `tool_id` int(11) NOT NULL,
-  `qty` int(11) NOT NULL,
+  `tool_id` int NOT NULL,
+  `qty` int NOT NULL,
   `date_outsourced` varchar(30) NOT NULL,
   `source_code` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -293,15 +294,15 @@ CREATE TABLE `outsourcing_tools` (
 --
 
 CREATE TABLE `temp` (
-  `temp_id` int(11) NOT NULL,
-  `equip_id` int(11) NOT NULL,
-  `qty` int(11) NOT NULL,
-  `emp_id` int(11) NOT NULL,
-  `location_id` int(11) NOT NULL,
+  `temp_id` int NOT NULL,
+  `equip_id` int NOT NULL,
+  `qty` int NOT NULL,
+  `emp_id` int NOT NULL,
+  `location_id` int NOT NULL,
   `unique_id` varchar(30) NOT NULL,
   `status` varchar(30) NOT NULL,
   `company_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -310,15 +311,15 @@ CREATE TABLE `temp` (
 --
 
 CREATE TABLE `temp1` (
-  `temp1_id` int(11) NOT NULL,
-  `tool_id` int(11) NOT NULL,
-  `qty` int(11) NOT NULL,
-  `emp_id` int(11) NOT NULL,
-  `location_id` int(11) NOT NULL,
+  `temp1_id` int NOT NULL,
+  `tool_id` int NOT NULL,
+  `qty` int NOT NULL,
+  `emp_id` int NOT NULL,
+  `location_id` int NOT NULL,
   `unique_id` varchar(30) NOT NULL,
   `status` varchar(30) NOT NULL,
   `company_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -327,10 +328,10 @@ CREATE TABLE `temp1` (
 --
 
 CREATE TABLE `tools` (
-  `tool_id` int(11) NOT NULL,
+  `tool_id` int NOT NULL,
   `name` varchar(30) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `available_quantity` int(11) NOT NULL,
+  `quantity` int NOT NULL,
+  `available_quantity` int NOT NULL,
   `tool_type` varchar(30) NOT NULL,
   `status` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -350,18 +351,18 @@ INSERT INTO `tools` (`tool_id`, `name`, `quantity`, `available_quantity`, `tool_
 --
 
 CREATE TABLE `transfered_equipment` (
-  `transfer_id` int(11) NOT NULL,
-  `map_id` int(11) NOT NULL,
-  `equip_id` int(11) NOT NULL,
-  `emp_id_from` int(11) NOT NULL,
-  `emp_id_to` int(11) NOT NULL,
+  `transfer_id` int NOT NULL,
+  `map_id` int NOT NULL,
+  `equip_id` int NOT NULL,
+  `emp_id_from` int NOT NULL,
+  `emp_id_to` int NOT NULL,
   `date_transfered` varchar(30) NOT NULL,
   `time_transfered` varchar(30) NOT NULL,
-  `location_id_from` int(11) NOT NULL,
-  `location_id_to` int(11) NOT NULL,
+  `location_id_from` int NOT NULL,
+  `location_id_to` int NOT NULL,
   `date_returned` varchar(30) NOT NULL,
   `status` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `transfered_equipment`
@@ -466,85 +467,85 @@ ALTER TABLE `transfered_equipment`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `auto`
 --
 ALTER TABLE `auto`
-  MODIFY `auto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `auto_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `borrowed_tools`
 --
 ALTER TABLE `borrowed_tools`
-  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `borrow_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `emp_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `equipments`
 --
 ALTER TABLE `equipments`
-  MODIFY `equip_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `equip_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `equip_mapping`
 --
 ALTER TABLE `equip_mapping`
-  MODIFY `map_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `map_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `location_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `log_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `outsourcing`
 --
 ALTER TABLE `outsourcing`
-  MODIFY `source_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `source_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `outsourcing_tools`
 --
 ALTER TABLE `outsourcing_tools`
-  MODIFY `source_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `source_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `temp`
 --
 ALTER TABLE `temp`
-  MODIFY `temp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `temp_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `temp1`
 --
 ALTER TABLE `temp1`
-  MODIFY `temp1_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `temp1_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tools`
 --
 ALTER TABLE `tools`
-  MODIFY `tool_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `tool_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `transfered_equipment`
 --
 ALTER TABLE `transfered_equipment`
-  MODIFY `transfer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `transfer_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
